@@ -1,41 +1,41 @@
 import * as actionTypes from "./actionTypes";
 import axios from "../../axios-orders";
 
-export const addIngredient = name => {
+export const addIngredient = (name) => {
   return {
     type: actionTypes.ADD_INGREDIENT,
-    ingredientName: name
+    ingredientName: name,
   };
 };
 
-export const removeIngredient = name => {
+export const removeIngredient = (name) => {
   return {
     type: actionTypes.REMOVE_INGREDIENT,
-    ingredientName: name
+    ingredientName: name,
   };
 };
 
-export const setIngredients = ingredients => {
+export const setIngredients = (ingredients) => {
   return {
     type: actionTypes.SET_INGREDIENTS,
-    ingredients: ingredients
+    ingredients: ingredients,
   };
 };
 
 export const fetchIngredientsFailed = () => {
   return {
-    type: actionTypes.FETCH_INGREDIENTS_FAILED
+    type: actionTypes.FETCH_INGREDIENTS_FAILED,
   };
 };
 
 export const initIngredients = () => {
-  return dispatch => {
+  return (dispatch) => {
     axios
       .get("https://react-burger-30d59.firebaseio.com/ingredients.json")
-      .then(response => {
+      .then((response) => {
         dispatch(setIngredients(response.data));
       })
-      .catch(error => {
+      .catch((error) => {
         dispatch(fetchIngredientsFailed());
       });
   };
